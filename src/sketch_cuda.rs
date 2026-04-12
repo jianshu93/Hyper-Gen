@@ -156,7 +156,8 @@ fn extract_kmer_t1ha2_cuda(
     builder.arg(&kmer_per_thread);
     builder.arg(&n_hash_per_thread);
     builder.arg(&ksize);
-    builder.arg(&(u64::MAX / scaled));
+    let binding = (u64::MAX / scaled);
+    builder.arg(&binding);
     builder.arg(&seed);
     builder.arg(&canonical);
     builder.arg(&mut gpu_kmer_hash);
@@ -220,7 +221,8 @@ pub fn cuda_mmhash_bitpack_parallel(
             builder.arg(&bp_per_thread);
             builder.arg(&n_hash_per_thread);
             builder.arg(&ksize);
-            builder.arg(&(u64::MAX / scaled));
+            let binding = (u64::MAX / scaled);
+            builder.arg(&binding);
             builder.arg(&canonical);
             builder.arg(&gpu_seq_nt4_table);
             builder.arg(&mut gpu_kmer_bit_hash);
@@ -294,7 +296,8 @@ pub fn cuda_t1ha2_hash_parallel(
             builder.arg(&kmer_per_thread);
             builder.arg(&n_hash_per_thread);
             builder.arg(&ksize);
-            builder.arg(&(u64::MAX / scaled));
+            let binding = (u64::MAX / scaled);
+            builder.arg(&binding);
             builder.arg(&seed);
             builder.arg(&canonical);
             builder.arg(&mut gpu_kmer_hash);
